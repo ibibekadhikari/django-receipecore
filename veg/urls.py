@@ -5,4 +5,6 @@ from . import views
 #If we want to create second link then we cann addd here and it should work like a charm.
 urlpatterns = [
     path("",views.receipes, name="receipes"),
+    #The <id> is used inorder to make it dynamic.
+    path("delete_receipes/<id>", views.delete_receipe, name="delete_receipes")
 ]

@@ -22,8 +22,35 @@
            <!-- For file upload, we have to use type file -->
             <input type="file" class="form-control" name="receipe_image"  placeholder="Enter receipename">
         </div>
+
         <button type="submit" class="btn btn-success">Add receipe</button>
       </form>
+      <hr>
+
+      {% comment %} Here begins the tablae  {% endcomment %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">S.N</th>
+            <th scope="col">Receipe Name</th>
+            <th scope="col">Receipe Description</th>
+            <th scope="col">Receipe Image</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for receipe in receipes%}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{receipe.receipe_name}}</td>
+            <td>{{receipe.receipe_description}}</td>
+            <td><img src="/media/{{receipe.receipe_image}}" height="80px" width="80px" /></td>
+            <td><button class="btn btn-danger"><a style="text-decoration: none;" href="delete_receipes/{{receipe.id}}">Delete</a></button></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
 </div>
 
 {% endblock %}

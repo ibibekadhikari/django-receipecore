@@ -21,9 +21,17 @@ def receipes(request):
             receipe_image = receipe_image
         )
         return redirect('/receipes/')
+    queryset = Receipe.objects.all()
+    context = {"receipes": queryset}
+    # print(queryset.receipe_name)
+    return render(request, 'receipes.html', context)
 
-    return render(request, 'receipes.html')
-
+def delete_receipe(request, id):
+    #Here the all gives all the files and get gives according to desired one.
+    queryset = Receipe.objects.get(id = id)
+    print(queryset)
+    queryset.delete()
+    return redirect("/receipes/")
 """Exception argument is required in order to 
 handle error page when exception eror occurs"""
 def error404(request, exception):
