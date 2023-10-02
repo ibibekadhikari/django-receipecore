@@ -17,7 +17,10 @@ Including another URLconf
 from django.contrib import admin
 #Also import include inorder to manage the path of the url insdie the app files.
 from django.urls import path, include
+from . import settings
 from veg.views import *
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,3 +29,11 @@ urlpatterns = [
 """The below variable handles exception so well but it has to be DEBUG=False in settings
    and it is given with app_name.views.functionDefined"""
 handler404 = 'veg.views.error404'
+
+"""To manage the staficfiles, these settings must be managed."""
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                        document_root=settings.MEDIA_ROOT  )
+
+urlpatterns += staticfiles_urlpatterns()
