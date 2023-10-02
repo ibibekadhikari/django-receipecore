@@ -1,0 +1,29 @@
+
+{%extends "base.html"%}
+{%block start%}
+
+<div class="container" style="margin-top: 50px;">
+    <h2>ADD RECEIPE</h2>
+    <hr>
+    <!-- enctype is addded with multipart* in order to receive images too.. -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class=" mb-3 ">
+          <label for="receipe_name">Receipe Name</label>
+          <input type="text" class="form-control" name="receipe_name"  placeholder="Enter receipename">
+    
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1">Receipe Description</label>
+          <textarea class="form-control" name="receipe_description"></textarea>
+        </div>
+        <div >
+            <label class="form-check-label" for="receipleimages">Receipe Images</label>
+           <!-- For file upload, we have to use type file -->
+            <input type="file" class="form-control" name="receipe_image"  placeholder="Enter receipename">
+        </div>
+        <button type="submit" class="btn btn-success">Add receipe</button>
+      </form>
+</div>
+
+{% endblock %}
