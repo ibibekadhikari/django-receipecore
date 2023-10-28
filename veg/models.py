@@ -1,9 +1,11 @@
+from tkinter import CASCADE
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 class Receipe(models.Model):
 #Degingin models, which literally defines table and their field in Django.
 #The variballe name should be same in the html field, name= tag.
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True) 
     id = models.AutoField(primary_key=True)
     receipe_name = models.CharField(max_length=100)
     receipe_description = models.TextField()
